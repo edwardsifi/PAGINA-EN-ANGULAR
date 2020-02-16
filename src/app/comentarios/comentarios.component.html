@@ -1,0 +1,51 @@
+<header class="masthead" style="background-image: url('../../assets/img/about-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>About Me</h1>
+          <span class="subheading">This is what I do.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <h1> formulario</h1>
+
+        <form action="" class="form" #formComentarios="ngForm">
+            {{formComentarios.value | json}}<br><br><!-- datos del formulario sacados desde el el formulario-->
+
+            {{perso | json}}<br> <!--datos del formulario desde el ts del arreglo perso--> 
+       
+
+            <label for="">Nombre</label>
+            <input [class.is-invalid]="nombre.invalid" [class.is-valid]="nombre.valid" #nombre="ngModel" [(ngModel)]="perso.nombre" class="form-control" type="text" name="nombre" id="" required><br>
+            <label for="">ciudad</label>
+            <input [class.is-invalid]="ciudad.invalid" [class.is-valid]="ciudad.valid" #ciudad="ngModel"  [(ngModel)]="perso.ciudad" class="form-control" type="text" name="ciudad" id="" required><br>
+            <label for="">comentario</label>
+            <input [class.is-invalid]="comentario.invalid" [class.is-valid]="comentario.valid"  #comentario="ngModel" [(ngModel)]="perso.comentario" class="form-control" type="text" name="comentario" id="" required><br>
+            <label   for="">imagen</label>
+            <input [class.is-invalid]="imagenUrl.invalid" [class.is-valid]="imagenUrl.valid" #imagenUrl="ngModel" [(ngModel)]="perso.imagenUrl" class="form-control" type="text" name="imagen" id="" required><br>
+            
+            <button [disabled]="formComentarios.form.invalid" (click)="guardar_comentario()"  class="btn btn-warning">comentar</button>
+      </form>
+
+      <h1> comentarios de la pagina</h1>
+        <div *ngFor = "let comentarios of comentarios">
+          <h2>{{comentarios.nombre}}</h2>
+          <p>{{comentarios.comentario}}</p>
+          <p>{{comentarios.ciudad}}</p>
+          <img alt="" class="imgt img-fluit img-fluid img-thumbnail" src="{{comentarios.imagenUrl}}">
+          
+      </div>
+    </div>
+  </div>
+</div>
+
+
